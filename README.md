@@ -48,3 +48,58 @@ Notes
 
 - Fork of MIDI.js with parallized soundfont generation [available here](https://github.com/gleitz/MIDI.js).
 - You can fetch Soundfont files directly from this repository, so you can access them directly from a browser. Use the prefix URL followed by the instrument name. For example: https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/marimba-mp3.js
+
+Path
+----
+https://sanguozhaoyun.github.io/midi-js-soundfonts/FluidR3_GM/electric_bass_pick-mp3/
+
+Works with Tone.js
+```js
+const sampler = new Tone.Sampler({
+	urls: {
+		"C4": "C4.mp3",
+		"D4": "D4.mp3",
+		"E4": "E4.mp3",
+		"F3": "F3.mp3",
+		"G3": "G3.mp3",
+		"A3": "A3.mp3",
+		"B3": "B3.mp3",
+	},
+	release: 1,
+	//baseUrl: "https://sanguozhaoyun.github.io/midi-js-soundfonts/FluidR3_GM/electric_bass_pick-mp3/",
+	//baseUrl: "https://sanguozhaoyun.github.io/midi-js-soundfonts/MusyngKite/electric_bass_pick-mp3/",
+	baseUrl: "https://sanguozhaoyun.github.io/midi-js-soundfonts/muzhiqin/tingyu-v1/",
+}).toDestination();
+
+Tone.loaded().then(() => {
+	let now = Tone.now();
+	sampler.triggerAttackRelease(["F3"], 1, now);
+	sampler.triggerAttackRelease(["A3"], 1, now+0.5);
+	sampler.triggerAttackRelease(["C4"], 1, now+1);
+	sampler.triggerAttackRelease(["F4"], 1, now+1.5);
+
+	
+	sampler.triggerAttackRelease(["G3"], 2, now+2.5, 0.5);
+	sampler.triggerAttackRelease(["B3"], 2, now+3, 0.5);
+	sampler.triggerAttackRelease(["D4"], 2, now+3.5);
+
+	sampler.triggerAttackRelease(["A3"], 2, now+4,0.3);
+	sampler.triggerAttackRelease(["C4"], 2, now+4.1,0.3);
+	sampler.triggerAttackRelease(["E4"], 2, now+4.2);
+
+	now = now + 5;
+	sampler.triggerAttackRelease(["F3"], 1, now);
+	sampler.triggerAttackRelease(["A3"], 1, now+0.5);
+	sampler.triggerAttackRelease(["C4"], 1, now+1);
+	sampler.triggerAttackRelease(["F4"], 1, now+1.5);
+	sampler.triggerAttackRelease(["C4"], 1, now+2);
+	sampler.triggerAttackRelease(["A3"], 1, now+2.5);
+	sampler.triggerAttackRelease(["F3"], 1, now+3);
+
+	now = now + 3.5;
+	sampler.triggerAttackRelease(["F3"], 3, now);
+	sampler.triggerAttackRelease(["A3"], 3, now+0.1);
+	sampler.triggerAttackRelease(["C4"], 3, now+0.2);
+	sampler.triggerAttackRelease(["F4"], 3, now+0.3);
+})
+```
